@@ -156,9 +156,9 @@ public class Game : MonoBehaviour
 
     private IEnumerator GameStart()
     {
-        yield return new WaitForSeconds(1f);
-
         SetMap();
+
+        yield return new WaitForSeconds(1f);        
 
         m_Map.m_GameState = GAME_STATE.START;
 

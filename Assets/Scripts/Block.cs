@@ -16,12 +16,11 @@ public class Block : MonoBehaviour
     private Block m_DownTaget;
     private float m_MoveTime = 0.2f;
 
-    private Action m_ActionFinish;
+    private Action<Block> m_ActionFinish;
     private IEnumerator m_IEMove;
 
-    public void Move(Block target, float time, Action actionFinish = null)
+    public void Move(float time, Action<Block> actionFinish = null)
     {
-        m_DownTaget = target;
         m_MoveTime = time;
         m_ActionFinish = actionFinish;
 
@@ -37,7 +36,7 @@ public class Block : MonoBehaviour
         {
             var moveTime = 0.0f;
 
-            RectTransform rtBlock = m_DownTaget.GetComponent<RectTransform>();
+            RectTransform rtBlock = gameObject.GetComponent<RectTransform>();
             RectTransform rtImage = m_Image.GetComponent<RectTransform>();
 
             Vector2 startPos = rtImage.anchoredPosition;
@@ -53,7 +52,7 @@ public class Block : MonoBehaviour
                 yield return null;
             }
 
-            m_ActionFinish?.Invoke();
+            m_ActionFinish?.Invoke(this);
         }
     }
 }
