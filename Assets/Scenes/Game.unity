@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Cam: {fileID: 519420031}
   m_MapParent: {fileID: 1675973933}
-  m_StageIndex: 8
+  m_StageIndex: 7
 --- !u!4 &38631331
 Transform:
   m_ObjectHideFlags: 0

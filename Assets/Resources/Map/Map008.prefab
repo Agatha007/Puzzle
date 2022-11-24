@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 0
+  m_CreateType: 1
 --- !u!1 &7426029917664825885
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 0
+  m_CreateType: 1
 --- !u!1 &7426029917751312121
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 0
+  m_CreateType: 1
 --- !u!1 &7426029917801699598
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 0
+  m_CreateType: 1
 --- !u!1 &7426029917824997720
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 0
+  m_CreateType: 1
 --- !u!1 &7426029917830685294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1089,7 +1089,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 0
+  m_CreateType: 1
 --- !u!1 &7426029918682023013
 GameObject:
   m_ObjectHideFlags: 0
