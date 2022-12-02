@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 1
+  m_CreateType: 0
 --- !u!1 &4069242382470775439
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 1
+  m_CreateType: 0
 --- !u!1 &7426029918287075611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 1
+  m_CreateType: 0
 --- !u!1 &7663431932818222468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1119,4 +1119,4 @@ MonoBehaviour:
   m_Index: 0
   m_BlockIndex: 0
   m_Image: {fileID: 0}
-  m_CreateType: 1
+  m_CreateType: 0

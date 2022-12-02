@@ -20,6 +20,11 @@ public class Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        WindowManager.Instance.ShowWindow(eWindow.GameWindow, (view) =>
+        {
+            GameWindow window = (GameWindow)view;
+        });
+
         if (IEStart != null)
             StopCoroutine(IEStart);
 
@@ -158,7 +163,7 @@ public class Game : MonoBehaviour
     {
         SetMap();
 
-        yield return new WaitForSeconds(1f);        
+        yield return new WaitForSeconds(1f);
 
         m_Map.m_GameState = GAME_STATE.START;
 

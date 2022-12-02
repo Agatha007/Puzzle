@@ -13,3 +13,20 @@ public enum BLOCK_CREATE_TYPE
     NONE,
     NO_CREATE,   // 블럭 생성 불가.
 }
+
+public enum ePopup
+{
+    NONE,
+}
+
+public enum eWindow
+{
+    NONE,
+    GameWindow
+}
+
+public enum eViewType
+{
+    Popup,
+    Window,
+}
