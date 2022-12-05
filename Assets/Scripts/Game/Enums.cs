@@ -22,7 +22,8 @@ public enum ePopup
 public enum eWindow
 {
     NONE,
-    GameWindow
+    GameWindow,
+    WorldMapWindow,
 }
 
 public enum eViewType

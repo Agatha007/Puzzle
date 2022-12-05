@@ -97,6 +97,30 @@ public class WindowManager : Singleton<WindowManager>
         if (GetCurrentViewName().Equals(window.ToString()))
             return;
 
+        ActiveAllPopup(false);
+
+        BaseView baseView = GetBaseView(window.ToString());
+        if( baseView != null )
+        {
+            BaseView mainwindow = GetCurrentPopup();
+
+            if (mainwindow != null)
+            {
+                if (mainwindow == baseView)
+                    return;
+            }
+
+            SetWindowActive(baseView, true);
+
+            if (ViewList.Contains(baseView))
+                ViewList.Remove(baseView);
+
+            ViewList.Add(baseView);
+
+            completeCallback?.Invoke(baseView);
+            return;
+        }
+
         GetPrefab(WINDOW, window.ToString(), PARENT_WINDOW, (loadObj) =>
         {
             SetView(eViewType.Window, window.ToString(), loadObj, (loadView) =>
@@ -259,5 +283,44 @@ public class WindowManager : Singleton<WindowManager>
         }
 
         return string.Empty;
+    }
+
+    public BaseView GetBaseView(string viewName)
+    {
+        return ViewList.Find(x => x.ViewName == viewName);
+    }
+
+    public void ActiveAllPopup(bool isActive)
+    {
+        if (ViewList != null && ViewList.Count > 0)
+        {
+            bool isWindowAfter = false;
+            for (int i = ViewList.Count - 1; i >= 0; i--)
+            {
+                if (ViewList[i] != null && ViewList[i].gameObject != null)
+                {
+                    if (isWindowAfter == true)
+                    {
+                        if (ViewList[i].gameObject.activeInHierarchy == true)
+                        {
+                            ViewList[i].OnPauseView();
+                            ViewList[i].gameObject.SetActive(false);
+                        }
+                    }
+                    else
+                    {
+                        if (isActive == false)
+                            ViewList[i].OnPauseView();
+                        ViewList[i].gameObject.SetActive(isActive);
+                    }
+                }
+            }
+        }
+
+        //모드 팝업이 숨겨졌다가 다시 ACtive될때 가장최신 팝업 refresh호출
+        if (isActive)
+        {
+            CallRefreshCurrentPopup();
+        }
     }
 }

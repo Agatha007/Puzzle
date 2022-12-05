@@ -11,25 +11,11 @@ public class Game : MonoBehaviour
     [SerializeField] private Camera m_Cam = null;    
     [SerializeField] private Transform m_MapParent = null;
 
-    [SerializeField] private int m_StageIndex;
+    [SerializeField] private int m_StageLevel;
 
     private Map m_Map;
 
     private IEnumerator IEStart;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        WindowManager.Instance.ShowWindow(eWindow.GameWindow, (view) =>
-        {
-            GameWindow window = (GameWindow)view;
-        });
-
-        if (IEStart != null)
-            StopCoroutine(IEStart);
-
-        StartCoroutine(IEStart = GameStart());
-    }
 
     // Update is called once per frame
     void Update()
@@ -136,30 +122,33 @@ public class Game : MonoBehaviour
     #endregion KEY EVENT
 
     #region GAME SETTING
-    private void SetMap()
+
+    public void GameStart(int level)
+    {
+        if( m_Cam == null )
+            m_Cam = WindowManager.Instance.UI_CAMERA;
+
+        if (m_MapParent == null)
+            m_MapParent = WindowManager.Instance.PARENT_WINDOW.transform;
+
+        m_StageLevel = level;
+
+        if (IEStart != null)
+            StopCoroutine(IEStart);
+
+        StartCoroutine(IEStart = IEGameStart());
+    }
+
+    public void RemoveMap()
     {
         if (m_Map != null)
         {
             Destroy(m_Map.gameObject);
             m_Map = null;
-        }   
-
-        if( m_Map == null )
-        {
-            GameObject obj = Instantiate(Resources.Load($"Map/Map{m_StageIndex:D3}") as GameObject);
-            obj.transform.SetParent( m_MapParent.transform );
-
-            obj.transform.localPosition = Vector3.zero;
-            obj.transform.localScale = Vector3.one;
-
-            m_Map = obj.GetComponent<Map>();
         }
-
-        m_Map.SetBlock();
-        m_Map.SetBlockImage();
     }
 
-    private IEnumerator GameStart()
+    private IEnumerator IEGameStart()
     {
         SetMap();
 
@@ -181,7 +170,26 @@ public class Game : MonoBehaviour
         if (IEStart != null)
             StopCoroutine(IEStart);
 
-        StartCoroutine(IEStart = GameStart());
+        StartCoroutine(IEStart = IEGameStart());
+    }
+
+    private void SetMap()
+    {
+        RemoveMap();
+
+        if (m_Map == null)
+        {
+            GameObject obj = Instantiate(Resources.Load($"Map/Map{m_StageLevel:D3}") as GameObject);
+            obj.transform.SetParent(m_MapParent.transform);
+
+            obj.transform.localPosition = Vector3.zero;
+            obj.transform.localScale = Vector3.one;
+
+            m_Map = obj.GetComponent<Map>();
+        }
+
+        m_Map.SetBlock();
+        m_Map.SetBlockImage();
     }
     #endregion BLOCK SETTING   
 }

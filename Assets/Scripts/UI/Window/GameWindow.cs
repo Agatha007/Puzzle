@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class GameWindow : BaseView
 {
-    public override void OnEnterView()
-    {
-        base.OnEnterView();
-    }
+    private Game m_game;
 
     protected override void OnClickClose()
     {
-        //base.OnClickClose();
+        if( m_game != null )
+            m_game.RemoveMap();
+
+        WindowManager.Instance.ShowWindow(eWindow.WorldMapWindow);
     }
 
-    public void SetInfo()
+    public void SetInfo(int level)
     {
+        if (m_game == null)
+            m_game = gameObject.AddComponent<Game>();
 
+        m_game.GameStart(level);
     }
 }
