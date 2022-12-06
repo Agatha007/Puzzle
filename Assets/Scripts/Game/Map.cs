@@ -51,8 +51,6 @@ public class Map : MonoBehaviour
     // 블럭 이미지 생성.
     public void SetBlockImage()
     {
-        //CreateBlockCheck();
-
         for (int i = 0; i < m_BlockList_Down.Count; i++)
         {
             BlockList blockList = m_BlockList_Down[i];
@@ -219,7 +217,6 @@ public class Map : MonoBehaviour
     public bool BlockCheck()
     {
         bool isCheck = false;
-        //if (BlockTwoXTwo())         isCheck = true;
         if (BlockDownCheck())       isCheck = true;
         if (BlockRightUpCheck())    isCheck = true;
         if (BlockRightDownCheck())  isCheck = true;        
@@ -365,110 +362,6 @@ public class Map : MonoBehaviour
 
         return blocks.Count >= 3;
     }
-
-    //private bool BlockTwoXTwo()
-    //{
-    //    List<Block> blocks = new List<Block>();
-
-    //    for (int i = 1; i < m_BlockDownList.Count - 1; i++)
-    //    {
-    //        for (int j = 1; j < m_BlockDownList[i].m_blocks.Count - 1; j++)
-    //        {
-    //            Block Up = m_BlockDownList[i].m_blocks[j - 1];
-    //            Block Center = m_BlockDownList[i].m_blocks[j];
-    //            Block Down = m_BlockDownList[i].m_blocks[j + 1];
-
-    //            Block leftUp = i <= 3 ? m_BlockDownList[i - 1].m_blocks[j - 1] : m_BlockDownList[i - 1].m_blocks[j];
-    //            Block leftDown = i <= 3 ? m_BlockDownList[i - 1].m_blocks[j] : m_BlockDownList[i - 1].m_blocks[j + 1];
-
-    //            Block rightUp = i < 3 ? m_BlockDownList[i + 1].m_blocks[j] : m_BlockDownList[i + 1].m_blocks[j - 1];
-    //            Block rightDown = i < 3 ? m_BlockDownList[i + 1].m_blocks[j + 1] : m_BlockDownList[i + 1].m_blocks[j];
-
-    //            if (Center.m_BlockIndex == -1)
-    //                continue;
-
-    //            if (Center.m_BlockIndex == Up.m_BlockIndex || Center.m_BlockIndex == Down.m_BlockIndex)
-    //            {
-    //                if (Center.m_BlockIndex == leftUp.m_BlockIndex && Center.m_BlockIndex == leftDown.m_BlockIndex)
-    //                {
-    //                    if (Center.m_BlockIndex == Up.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Up.m_Index) == false)
-    //                            blocks.Add(Up);
-    //                    if (Center.m_BlockIndex == Down.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Down.m_Index) == false)
-    //                            blocks.Add(Down);
-
-    //                    if (blocks.Find(x => x.m_Index == Center.m_Index) == false)
-    //                        blocks.Add(Center);
-    //                    if (blocks.Find(x => x.m_Index == leftUp.m_Index) == false)
-    //                        blocks.Add(leftUp);
-    //                    if (blocks.Find(x => x.m_Index == leftDown.m_Index) == false)
-    //                        blocks.Add(leftDown);
-    //                }
-
-    //                if (Center.m_BlockIndex == rightUp.m_BlockIndex && Center.m_BlockIndex == rightDown.m_BlockIndex)
-    //                {
-    //                    if (Center.m_BlockIndex == Up.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Up.m_Index) == false)
-    //                            blocks.Add(Up);
-    //                    if (Center.m_BlockIndex == Down.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Down.m_Index) == false)
-    //                            blocks.Add(Down);
-
-    //                    if (blocks.Find(x => x.m_Index == Center.m_Index) == false)
-    //                        blocks.Add(Center);
-    //                    if (blocks.Find(x => x.m_Index == rightUp.m_Index) == false)
-    //                        blocks.Add(rightUp);
-    //                    if (blocks.Find(x => x.m_Index == rightDown.m_Index) == false)
-    //                        blocks.Add(rightDown);
-    //                }
-
-    //                if (Center.m_BlockIndex == leftUp.m_BlockIndex && Center.m_BlockIndex == rightUp.m_BlockIndex)
-    //                {
-    //                    if (Center.m_BlockIndex == Up.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Up.m_Index) == false)
-    //                            blocks.Add(Up);
-    //                    if (Center.m_BlockIndex == Down.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Down.m_Index) == false)
-    //                            blocks.Add(Down);
-
-    //                    if (blocks.Find(x => x.m_Index == Center.m_Index) == false)
-    //                        blocks.Add(Center);
-    //                    if (blocks.Find(x => x.m_Index == leftUp.m_Index) == false)
-    //                        blocks.Add(leftUp);
-    //                    if (blocks.Find(x => x.m_Index == rightUp.m_Index) == false)
-    //                        blocks.Add(rightUp);
-    //                }
-
-    //                if (Center.m_BlockIndex == leftDown.m_BlockIndex && Center.m_BlockIndex == rightDown.m_BlockIndex)
-    //                {
-    //                    if (Center.m_BlockIndex == Up.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Up.m_Index) == false)
-    //                            blocks.Add(Up);
-    //                    if (Center.m_BlockIndex == Down.m_BlockIndex)
-    //                        if (blocks.Find(x => x.m_Index == Down.m_Index) == false)
-    //                            blocks.Add(Down);
-
-    //                    if (blocks.Find(x => x.m_Index == Center.m_Index) == false)
-    //                        blocks.Add(Center);
-    //                    if (blocks.Find(x => x.m_Index == leftDown.m_Index) == false)
-    //                        blocks.Add(leftDown);
-    //                    if (blocks.Find(x => x.m_Index == rightDown.m_Index) == false)
-    //                        blocks.Add(rightDown);
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //    for (int i = 0; i < blocks.Count; i++)
-    //    {
-    //        blocks[i].m_BlockIndex = -1;
-    //        if (blocks[i].m_Image != null && blocks[i].m_Image.gameObject != null)
-    //            DestroyImmediate(blocks[i].m_Image.gameObject);
-    //    }
-
-    //    return blocks.Count >= 4;
-    //}
     #endregion
 
     #region BLANK BLOCK MOVE
@@ -579,104 +472,5 @@ public class Map : MonoBehaviour
             block.m_Image.gameObject.SetActive(false);
         }
     }
-
-    //private void BlockMove_CreateDown(Block block)
-    //{
-    //    if (block.m_Image != null)
-    //        block.m_Image.gameObject.SetActive(true);
-
-    //    block.Move(GetBlockMoveTime(block));
-    //}
-
-    //private void BlockMove_DownCreate(Block block)
-    //{
-    //    if (block.m_Image != null)
-    //        block.m_Image.gameObject.SetActive(true);
-
-    //    block.Move(GetBlockMoveTime(block));
-    //}
-
-    //private void DownMoveBlock(Block curBlock)
-    //{
-    //    BlockList blockList = m_BlockList_Down.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
-
-    //    for (int i = blockList.m_blocks.Count - 1; i >= 0; i--)
-    //    {
-    //        Block block = blockList.m_blocks[i];
-
-    //        if (i == 0)
-    //        {
-    //            BlockMove_CreateDown(block);
-    //        }
-    //        else
-    //        {
-    //            if (block.m_Image == null)
-    //            {
-    //                block.m_Image = blockList.m_blocks[i - 1].m_Image;
-    //                block.m_BlockIndex = blockList.m_blocks[i - 1].m_BlockIndex;
-
-    //                blockList.m_blocks[i - 1].m_Image = null;
-    //                blockList.m_blocks[i - 1].m_BlockIndex = 0;
-
-    //                BlockMove_DownCreate(block);
-    //            }
-    //        }
-    //    }
-    //}
-
-    //// 블럭 왼쪽 오른쪽 이동 할지 정한는 로직.
-    //private void LeftOrRight_BlockDown(Block block)
-    //{
-    //    int value = UnityEngine.Random.Range(0, 2);
-
-    //    if (value == 0)
-    //    {
-    //        if (!RightMoveBlock(block))
-    //            LeftMoveBlock(block);
-    //    }
-    //    else
-    //    {
-    //        if (!LeftMoveBlock(block))
-    //            RightMoveBlock(block);
-    //    }
-    //}
-
-    //private bool RightMoveBlock(Block curBlock)
-    //{
-    //    BlockList blockList = m_BlockList_RightDown.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
-    //    List<Block> blocks = blockList?.m_blocks.FindAll(x => x.m_Index > curBlock.m_Index && x.m_Image == null);
-
-    //    if ( blocks != null && blocks.Count > 0 )
-    //    {
-    //        Block block = blocks[blocks.Count - 1];
-    //        block.m_Image = curBlock.m_Image;
-    //        block.m_BlockIndex = curBlock.m_BlockIndex;
-    //        block.Move(GameData.m_OneBlockMoveTime);
-
-    //        curBlock.m_Image = null;
-    //        curBlock.m_BlockIndex = 0;
-    //    }
-
-    //    return blocks != null && blocks.Count > 0;
-    //}
-
-    //private bool LeftMoveBlock(Block curBlock)
-    //{
-    //    BlockList blockList = m_BlockList_LeftDown.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
-    //    List<Block> blocks = blockList?.m_blocks.FindAll(x => x.m_Index < curBlock.m_Index && x.m_Image == null);
-
-    //    if ( blocks != null && blocks.Count > 0)
-    //    {
-    //        Block block = blocks[blocks.Count - 1];
-    //        block.m_Image = curBlock.m_Image;
-    //        block.m_BlockIndex = curBlock.m_BlockIndex;
-    //        block.Move(GameData.m_OneBlockMoveTime);
-
-    //        curBlock.m_Image = null;
-    //        curBlock.m_BlockIndex = 0;
-    //    }
-
-    //    return blocks != null && blocks.Count > 0;
-    //}
     #endregion BLANK BLOCK MOVE
 }
