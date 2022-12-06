@@ -63,8 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Index: 0
-  m_BlockIndex: 1
+  m_BlockIndex: 6
   m_Image: {fileID: 0}
+  m_CreateType: 0
 --- !u!1 &7426029917824997720
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,8 +129,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Index: 0
-  m_BlockIndex: 1
+  m_BlockIndex: 6
   m_Image: {fileID: 0}
+  m_CreateType: 0
 --- !u!1 &7426029918287075611
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,14 +193,6 @@ MonoBehaviour:
     - {fileID: 7426029919667646699}
   - m_blocks:
     - {fileID: 7426029917702416832}
-  m_BlockList_RightUp:
-  - m_blocks:
-    - {fileID: 7426029917824997725}
-    - {fileID: 7426029918707886712}
-  - m_blocks:
-    - {fileID: 7426029919667646699}
-  - m_blocks:
-    - {fileID: 7426029917702416832}
   m_BlockList_RightDown:
   - m_blocks:
     - {fileID: 7426029917824997725}
@@ -206,6 +200,7 @@ MonoBehaviour:
     - {fileID: 7426029917702416832}
   - m_blocks:
     - {fileID: 7426029918707886712}
+  m_BlockList_LeftDown: []
   m_MoveBlocks: []
 --- !u!1 &7426029918707886715
 GameObject:
@@ -269,9 +264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b54c4e4280e344791be51240566dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Index: 1
-  m_BlockIndex: 1
+  m_Index: 0
+  m_BlockIndex: 6
   m_Image: {fileID: 0}
+  m_CreateType: 0
 --- !u!1 &7426029918752456527
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,5 +405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Index: 0
-  m_BlockIndex: 2
+  m_BlockIndex: 5
   m_Image: {fileID: 0}
+  m_CreateType: 0

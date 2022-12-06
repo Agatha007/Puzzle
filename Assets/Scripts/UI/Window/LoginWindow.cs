@@ -19,6 +19,9 @@ public class LoginWindow : MonoBehaviour
 
     void OnClickStart()
     {
-        PlayState.Instance.ChangePlayState(PlayState.STATES.WorldMap);
+        GenDataMgr.Instance.DataTable.LoadResourcesTableData(() =>
+        {
+            PlayState.Instance.ChangePlayState(PlayState.STATES.WorldMap);
+        });
     }
 }

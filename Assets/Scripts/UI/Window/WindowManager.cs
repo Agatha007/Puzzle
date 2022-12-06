@@ -158,7 +158,7 @@ public class WindowManager : Singleton<WindowManager>
         }
 
         obj.name = prefabName;
-        obj.transform.parent = parent;
+        obj.transform.SetParent( parent );
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localScale = Vector3.one;
 

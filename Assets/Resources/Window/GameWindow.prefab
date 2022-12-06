@@ -1395,6 +1395,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_btnClose: {fileID: 7875219597816326064}
+  m_BlockAtlas: {fileID: 4343727234628468602, guid: 8d2455ad6d1254f49a60d62725be09ee, type: 2}
+  m_BlockImge: {fileID: 9036748984831485801}
+  m_TxBlockCount: {fileID: 9036748985474657796}
+  m_TxMoveCount: {fileID: 5660172945375565551}
+  m_TxPoint: {fileID: 7679004822765435301}
 --- !u!1 &9036748985474657850
 GameObject:
   m_ObjectHideFlags: 0

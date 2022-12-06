@@ -25,6 +25,9 @@ public class Map : MonoBehaviour
 
     public GAME_STATE m_GameState { set { GameState = value; } get { return GameState; } }
 
+    private Action<int> m_actBlockDelete;
+    public Action<int> ACT_BLOCK_DELETE { get { return m_actBlockDelete; } set { m_actBlockDelete = value; } }
+
     #region BLOCK SETTING    
     // 블럭 셋팅.
     public void SetBlock()
@@ -90,7 +93,7 @@ public class Map : MonoBehaviour
 
     #region BLOCK CHANGE
     // 선택한 두개의 블럭이 이동 가능한지 체크 후 이동 시킨다.
-    public IEnumerator Move()
+    public IEnumerator Move(Action actionFinish)
     {
         yield return StartCoroutine(IEMove());
 
@@ -104,6 +107,8 @@ public class Map : MonoBehaviour
         else
         {
             yield return StartCoroutine(BlockDownMove());
+
+            actionFinish?.Invoke();
         }
     }
 
@@ -254,10 +259,14 @@ public class Map : MonoBehaviour
         {
             for (int i = 0; i < blocks.Count; i++)
             {
-                blocks[i].m_BlockIndex = 0;
-
                 if (blocks[i].m_Image != null && blocks[i].m_Image.gameObject != null)
-                    DestroyImmediate(blocks[i].m_Image.gameObject);
+                {
+                    m_actBlockDelete?.Invoke(blocks[i].m_BlockIndex);
+
+                    DestroyImmediate(blocks[i].m_Image.gameObject);                   
+                }
+
+                blocks[i].m_BlockIndex = 0;
             }
         }
 
@@ -296,10 +305,14 @@ public class Map : MonoBehaviour
         {
             for (int i = 0; i < blocks.Count; i++)
             {
-                blocks[i].m_BlockIndex = 0;
-
                 if (blocks[i].m_Image != null && blocks[i].m_Image.gameObject != null)
+                {
+                    m_actBlockDelete?.Invoke(blocks[i].m_BlockIndex);
+
                     DestroyImmediate(blocks[i].m_Image.gameObject);
+                }
+
+                blocks[i].m_BlockIndex = 0;
             }
         }
 
@@ -339,10 +352,14 @@ public class Map : MonoBehaviour
         {
             for (int i = 0; i < blocks.Count; i++)
             {
-                blocks[i].m_BlockIndex = 0;
-
                 if (blocks[i].m_Image != null && blocks[i].m_Image.gameObject != null)
+                {
+                    m_actBlockDelete?.Invoke(blocks[i].m_BlockIndex);
+
                     DestroyImmediate(blocks[i].m_Image.gameObject);
+                }
+
+                blocks[i].m_BlockIndex = 0;
             }
         }
 
@@ -563,103 +580,103 @@ public class Map : MonoBehaviour
         }
     }
 
-    private void BlockMove_CreateDown(Block block)
-    {
-        if (block.m_Image != null)
-            block.m_Image.gameObject.SetActive(true);
+    //private void BlockMove_CreateDown(Block block)
+    //{
+    //    if (block.m_Image != null)
+    //        block.m_Image.gameObject.SetActive(true);
 
-        block.Move(GetBlockMoveTime(block));
-    }
+    //    block.Move(GetBlockMoveTime(block));
+    //}
 
-    private void BlockMove_DownCreate(Block block)
-    {
-        if (block.m_Image != null)
-            block.m_Image.gameObject.SetActive(true);
+    //private void BlockMove_DownCreate(Block block)
+    //{
+    //    if (block.m_Image != null)
+    //        block.m_Image.gameObject.SetActive(true);
 
-        block.Move(GetBlockMoveTime(block));
-    }
+    //    block.Move(GetBlockMoveTime(block));
+    //}
 
-    private void DownMoveBlock(Block curBlock)
-    {
-        BlockList blockList = m_BlockList_Down.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
+    //private void DownMoveBlock(Block curBlock)
+    //{
+    //    BlockList blockList = m_BlockList_Down.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
 
-        for (int i = blockList.m_blocks.Count - 1; i >= 0; i--)
-        {
-            Block block = blockList.m_blocks[i];
+    //    for (int i = blockList.m_blocks.Count - 1; i >= 0; i--)
+    //    {
+    //        Block block = blockList.m_blocks[i];
 
-            if (i == 0)
-            {
-                BlockMove_CreateDown(block);
-            }
-            else
-            {
-                if (block.m_Image == null)
-                {
-                    block.m_Image = blockList.m_blocks[i - 1].m_Image;
-                    block.m_BlockIndex = blockList.m_blocks[i - 1].m_BlockIndex;
+    //        if (i == 0)
+    //        {
+    //            BlockMove_CreateDown(block);
+    //        }
+    //        else
+    //        {
+    //            if (block.m_Image == null)
+    //            {
+    //                block.m_Image = blockList.m_blocks[i - 1].m_Image;
+    //                block.m_BlockIndex = blockList.m_blocks[i - 1].m_BlockIndex;
 
-                    blockList.m_blocks[i - 1].m_Image = null;
-                    blockList.m_blocks[i - 1].m_BlockIndex = 0;
+    //                blockList.m_blocks[i - 1].m_Image = null;
+    //                blockList.m_blocks[i - 1].m_BlockIndex = 0;
 
-                    BlockMove_DownCreate(block);
-                }
-            }
-        }
-    }
+    //                BlockMove_DownCreate(block);
+    //            }
+    //        }
+    //    }
+    //}
 
-    // 블럭 왼쪽 오른쪽 이동 할지 정한는 로직.
-    private void LeftOrRight_BlockDown(Block block)
-    {
-        int value = UnityEngine.Random.Range(0, 2);
+    //// 블럭 왼쪽 오른쪽 이동 할지 정한는 로직.
+    //private void LeftOrRight_BlockDown(Block block)
+    //{
+    //    int value = UnityEngine.Random.Range(0, 2);
 
-        if (value == 0)
-        {
-            if (!RightMoveBlock(block))
-                LeftMoveBlock(block);
-        }
-        else
-        {
-            if (!LeftMoveBlock(block))
-                RightMoveBlock(block);
-        }
-    }
+    //    if (value == 0)
+    //    {
+    //        if (!RightMoveBlock(block))
+    //            LeftMoveBlock(block);
+    //    }
+    //    else
+    //    {
+    //        if (!LeftMoveBlock(block))
+    //            RightMoveBlock(block);
+    //    }
+    //}
 
-    private bool RightMoveBlock(Block curBlock)
-    {
-        BlockList blockList = m_BlockList_RightDown.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
-        List<Block> blocks = blockList?.m_blocks.FindAll(x => x.m_Index > curBlock.m_Index && x.m_Image == null);
+    //private bool RightMoveBlock(Block curBlock)
+    //{
+    //    BlockList blockList = m_BlockList_RightDown.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
+    //    List<Block> blocks = blockList?.m_blocks.FindAll(x => x.m_Index > curBlock.m_Index && x.m_Image == null);
 
-        if ( blocks != null && blocks.Count > 0 )
-        {
-            Block block = blocks[blocks.Count - 1];
-            block.m_Image = curBlock.m_Image;
-            block.m_BlockIndex = curBlock.m_BlockIndex;
-            block.Move(GameData.m_OneBlockMoveTime);
+    //    if ( blocks != null && blocks.Count > 0 )
+    //    {
+    //        Block block = blocks[blocks.Count - 1];
+    //        block.m_Image = curBlock.m_Image;
+    //        block.m_BlockIndex = curBlock.m_BlockIndex;
+    //        block.Move(GameData.m_OneBlockMoveTime);
 
-            curBlock.m_Image = null;
-            curBlock.m_BlockIndex = 0;
-        }
+    //        curBlock.m_Image = null;
+    //        curBlock.m_BlockIndex = 0;
+    //    }
 
-        return blocks != null && blocks.Count > 0;
-    }
+    //    return blocks != null && blocks.Count > 0;
+    //}
 
-    private bool LeftMoveBlock(Block curBlock)
-    {
-        BlockList blockList = m_BlockList_LeftDown.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
-        List<Block> blocks = blockList?.m_blocks.FindAll(x => x.m_Index < curBlock.m_Index && x.m_Image == null);
+    //private bool LeftMoveBlock(Block curBlock)
+    //{
+    //    BlockList blockList = m_BlockList_LeftDown.Find(x => x.m_blocks.Find(x => x.m_Index == curBlock.m_Index));
+    //    List<Block> blocks = blockList?.m_blocks.FindAll(x => x.m_Index < curBlock.m_Index && x.m_Image == null);
 
-        if ( blocks != null && blocks.Count > 0)
-        {
-            Block block = blocks[blocks.Count - 1];
-            block.m_Image = curBlock.m_Image;
-            block.m_BlockIndex = curBlock.m_BlockIndex;
-            block.Move(GameData.m_OneBlockMoveTime);
+    //    if ( blocks != null && blocks.Count > 0)
+    //    {
+    //        Block block = blocks[blocks.Count - 1];
+    //        block.m_Image = curBlock.m_Image;
+    //        block.m_BlockIndex = curBlock.m_BlockIndex;
+    //        block.Move(GameData.m_OneBlockMoveTime);
 
-            curBlock.m_Image = null;
-            curBlock.m_BlockIndex = 0;
-        }
+    //        curBlock.m_Image = null;
+    //        curBlock.m_BlockIndex = 0;
+    //    }
 
-        return blocks != null && blocks.Count > 0;
-    }
+    //    return blocks != null && blocks.Count > 0;
+    //}
     #endregion BLANK BLOCK MOVE
 }

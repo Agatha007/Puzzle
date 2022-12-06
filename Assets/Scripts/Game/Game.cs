@@ -13,6 +13,12 @@ public class Game : MonoBehaviour
 
     [SerializeField] private int m_StageLevel;
 
+    private Action m_actMove;
+    public Action ACT_MOVE { get { return m_actMove; } set { m_actMove = value; } }
+
+    private Action<int> m_actBlockDelete;
+    public Action<int> ACT_BLOCK_DELETE { get { return m_actBlockDelete; } set { m_actBlockDelete = value; } }
+
     private Map m_Map;
 
     private IEnumerator IEStart;
@@ -67,7 +73,12 @@ public class Game : MonoBehaviour
                     return;
 
                 if ( m_Map.m_GameState == GAME_STATE.START && IsTouchBlock() )
-                    StartCoroutine( m_Map.Move() );
+                {
+                    StartCoroutine(m_Map.Move(() =>
+                    {
+                        m_actMove?.Invoke();
+                    }));
+                }   
             }
         }
     }
@@ -190,6 +201,7 @@ public class Game : MonoBehaviour
 
         m_Map.SetBlock();
         m_Map.SetBlockImage();
+        m_Map.ACT_BLOCK_DELETE = m_actBlockDelete;
     }
     #endregion BLOCK SETTING   
 }

@@ -1,0 +1,76 @@
+﻿{
+  "array": [
+    {
+      "UID": 10001,
+      "MapName": "Map001",
+      "MoveCount": 1,
+      "ClearBlockName": "blue_normal",
+      "ClearBlockIndex": 1,
+      "ClearBlockCount": 3
+    },
+    {
+      "UID": 10002,
+      "MapName": "Map002",
+      "MoveCount": 1,
+      "ClearBlockName": "green_normal",
+      "ClearBlockIndex": 2,
+      "ClearBlockCount": 3
+    },
+    {
+      "UID": 10003,
+      "MapName": "Map003",
+      "MoveCount": 1,
+      "ClearBlockName": "orange_normal",
+      "ClearBlockIndex": 3,
+      "ClearBlockCount": 3
+    },
+    {
+      "UID": 10004,
+      "MapName": "Map004",
+      "MoveCount": 1,
+      "ClearBlockName": "purple_normal",
+      "ClearBlockIndex": 4,
+      "ClearBlockCount": 3
+    },
+    {
+      "UID": 10005,
+      "MapName": "Map005",
+      "MoveCount": 1,
+      "ClearBlockName": "red_normal",
+      "ClearBlockIndex": 5,
+      "ClearBlockCount": 3
+    },
+    {
+      "UID": 10006,
+      "MapName": "Map006",
+      "MoveCount": 1,
+      "ClearBlockName": "yellow_normal",
+      "ClearBlockIndex": 6,
+      "ClearBlockCount": 3
+    },
+    {
+      "UID": 10007,
+      "MapName": "Map007",
+      "MoveCount": 10,
+      "ClearBlockName": "blue_normal",
+      "ClearBlockIndex": 1,
+      "ClearBlockCount": 10
+    },
+    {
+      "UID": 10008,
+      "MapName": "Map008",
+      "MoveCount": 20,
+      "ClearBlockName": "green_normal",
+      "ClearBlockIndex": 2,
+      "ClearBlockCount": 15
+    },
+    {
+      "UID": 10009,
+      "MapName": "Map009",
+      "MoveCount": 30,
+      "ClearBlockName": "orange_normal",
+      "ClearBlockIndex": 3,
+      "ClearBlockCount": 20
+    }
+  ]
+}

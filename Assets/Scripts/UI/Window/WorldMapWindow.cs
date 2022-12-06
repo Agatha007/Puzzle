@@ -13,13 +13,13 @@ public class WorldMapWindow : BaseView
 
         for( int i=0; i< m_StageList.Count; i++ )
         {
-            int level = i + 1;
+            int index = i;
             m_StageList[i].onClick.RemoveAllListeners();
-            m_StageList[i].onClick.AddListener(() => OnClickStage(level));
+            m_StageList[i].onClick.AddListener(() => OnClickStage(index));
         }
     }
 
-    public void OnClickStage(int level)
+    public void OnClickStage(int index)
     {
         WindowManager.Instance.ShowWindow(eWindow.GameWindow, (view) =>
         {
@@ -28,7 +28,7 @@ public class WorldMapWindow : BaseView
                 GameWindow window = (GameWindow)view;
 
                 if( window != null )
-                    window.SetInfo(level);
+                    window.SetInfo(index);
             }
         });
     }
